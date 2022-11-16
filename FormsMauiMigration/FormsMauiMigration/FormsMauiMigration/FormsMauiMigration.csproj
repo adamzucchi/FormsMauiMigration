@@ -15,6 +15,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="FreshMvvm" Version="4.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Microsoft.AppCenter" Version="4.5.3" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Data\" />
@@ -26,6 +29,9 @@
     <None Remove="sqlite-net-pcl" />
     <None Remove="Models\" />
     <None Remove="Data\Models\" />
+    <None Remove="Microsoft.AppCenter" />
+    <None Remove="Microsoft.AppCenter.Analytics" />
+    <None Remove="Microsoft.AppCenter.Crashes" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
