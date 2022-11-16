@@ -3,6 +3,7 @@ using FormsMauiMigration.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FormsMauiMigration.Interfaces;
+using FormsMauiMigration.Models;
 
 namespace FormsMauiMigration.Services
 {

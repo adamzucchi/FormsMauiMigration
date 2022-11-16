@@ -1,12 +1,15 @@
 ﻿using System;
 
-namespace FormsMauiMigration.Data
+
+namespace FormsMauiMigration.Models
 {
-    public class Monkey : BaseModel
+    public class Monkey
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public string Details { get; set; }
+        public string ImageUrl { get; set; }
 
         //public Xamarin.Forms.ImageSource Image
         //{
@@ -26,17 +29,16 @@ namespace FormsMauiMigration.Data
         //    }
         //}
 
-        private string _imageUrl;
-        public string ImageUrl
-        {
-            get { return _imageUrl; }
-            set
-            {
-                _imageUrl = value;
-                OnPropertyChanged(nameof(Monkey.ImageUrl));
-                //OnPropertyChanged(nameof(Monkey.ImageSource));
-            }
-        }
+        //private string _imageUrl;
+        //public string ImageUrl
+        //{
+        //    get { return _imageUrl; }
+        //    set
+        //    {
+        //        _imageUrl = value;
+        //    }
+        //}
+
         //private string _imageUrl;
         //public string ImageUrl
         //{

@@ -1,6 +1,7 @@
 ﻿using System;
 using FreshMvvm;
 using FormsMauiMigration.Data;
+using FormsMauiMigration.Models;
 
 namespace FormsMauiMigration.PageModels
 {

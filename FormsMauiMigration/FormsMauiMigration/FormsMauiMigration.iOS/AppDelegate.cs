@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
 using UIKit;
+using FormsMauiMigration.Interfaces;
+using FormsMauiMigration.Data;
+using FormsMauiMigration.Services;
+using FreshMvvm;
 
 namespace FormsMauiMigration.iOS
 {
@@ -23,6 +26,10 @@ namespace FormsMauiMigration.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            FreshMvvm.FreshIOC.Container.Register<IMonkeyDatabase>(MonkeyDatabase.Current());
+            FreshMvvm.FreshIOC.Container.Register<IDataService, DataService>();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

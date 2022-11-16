@@ -1,9 +1,11 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using FormsMauiMigration.Interfaces;
+using FormsMauiMigration.Data;
+using FormsMauiMigration.Services;
 
 namespace FormsMauiMigration.Droid
 {
@@ -16,6 +18,10 @@ namespace FormsMauiMigration.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            FreshMvvm.FreshIOC.Container.Register<IMonkeyDatabase>(MonkeyDatabase.Current());
+            FreshMvvm.FreshIOC.Container.Register<IDataService, DataService>();
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
