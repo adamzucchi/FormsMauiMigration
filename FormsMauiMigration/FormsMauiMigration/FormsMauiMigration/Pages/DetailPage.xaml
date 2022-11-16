@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsMauiMigration.Pages.DetailPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             Title="{Binding Name}">
+    <ContentPage.Content>
+        <AbsoluteLayout Padding="0"
+                        Margin="0">
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+                  Padding="20"
+                  Margin="0"
+                  RowDefinitions="250,Auto,Auto"
+                  ColumnDefinitions="*">
+                <Image Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0"
+                        WidthRequest="250"
+                        HeightRequest="250"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFill"
+                        Source="{Binding ImageUrl}" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       FontSize="Small"
+                       Text="{Binding Location}"
+                       LineBreakMode="WordWrap"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       Text="{Binding Details}"
+                       LineBreakMode="WordWrap"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+            </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

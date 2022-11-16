@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsMauiMigration.Pages.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True">
+    <AbsoluteLayout Padding="0"
+                    Margin="0">
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All"
+              Padding="20,0"
+              Margin="0"
+              RowDefinitions="Auto,*"
+              ColumnDefinitions="*">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="Title"
+                   Text="Pick a Monkey"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <CollectionView Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0"
+                            ItemSizingStrategy="MeasureAllItems"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedMonkey}"
+                            SelectionChangedCommand="{Binding SelectedMonkeyChangedCommand}"
+                            ItemsSource="{Binding Monkeys}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0"
+                               Margin="0"
+                               HasShadow="False"
+                               BackgroundColor="DarkGray"
+                               CornerRadius="15">
+                            <Grid Padding="0"
+                                  Margin="0"
+                                  RowDefinitions="15,100,15"
+                                  ColumnDefinitions="20,100,*">
+                                <Image Grid.Row="1"
+                                       Grid.Column="1"                                       
+                                       Margin="0"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Source="{Binding ImageUrl}">
+                                    
+                                </Image>
+                                <Label Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"
+                                       LineBreakMode="TailTruncation"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>
