@@ -1,7 +1,9 @@
 ﻿using System;
-using FreshMvvm;
 using FormsMauiMigration.Data;
 using FormsMauiMigration.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using FreshMvvm.Maui;
 
 namespace FormsMauiMigration.PageModels
 {
@@ -12,6 +14,7 @@ namespace FormsMauiMigration.PageModels
         private string _location;
         private string _details;
         private string _imageUrl;
+        private UriImageSource _imageUrlSource;
         #endregion Fields
 
         #region Constructor
@@ -34,7 +37,8 @@ namespace FormsMauiMigration.PageModels
                 Location = monkey.Location;
                 Details = monkey.Details;
                 ImageUrl = monkey.ImageUrl;
-                System.Diagnostics.Debug.WriteLine($"ImageUrl: { monkey.ImageUrl }");
+                //ImageUrlSource = monkey.ImageUrlSource;
+                //System.Diagnostics.Debug.WriteLine($"ImageUrl: { monkey.ImageUrl }");
             }
         }
         #endregion FreshMvvm
@@ -51,6 +55,19 @@ namespace FormsMauiMigration.PageModels
             {
                 _name = value;
                 RaisePropertyChanged(nameof(DetailPageModel.Name));
+            }
+        }
+
+        public UriImageSource ImageUrlSource
+        {
+            get
+            {
+                return _imageUrlSource;
+            }
+            set
+            {
+                _imageUrlSource = value;
+                RaisePropertyChanged(nameof(DetailPageModel.ImageUrlSource));
             }
         }
 

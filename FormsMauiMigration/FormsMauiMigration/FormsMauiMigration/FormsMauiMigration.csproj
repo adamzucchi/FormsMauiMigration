@@ -1,45 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-  </PropertyGroup>
+    <TargetFrameworks>net6.0-ios;net6.0-android</TargetFrameworks>
+    <UseMaui>True</UseMaui>
+	  <OutputType>Library</OutputType>
+	  <!--<ImplicitUsings>enable</ImplicitUsings>-->
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+<ApplicationTitle>FormsMauiMigration</ApplicationTitle>
 
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-    <PackageReference Include="FreshMvvm" Version="4.0.1" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <PackageReference Include="Microsoft.AppCenter" Version="4.5.3" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Data\" />
-    <None Remove="Pages\" />
-    <None Remove="PageModels\" />
-    <None Remove="FreshMvvm" />
-    <None Remove="Services\" />
-    <None Remove="Interfaces\" />
-    <None Remove="sqlite-net-pcl" />
-    <None Remove="Models\" />
-    <None Remove="Data\Models\" />
-    <None Remove="Microsoft.AppCenter" />
-    <None Remove="Microsoft.AppCenter.Analytics" />
-    <None Remove="Microsoft.AppCenter.Crashes" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Pages\" />
-    <Folder Include="PageModels\" />
-    <Folder Include="Services\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
-    <Folder Include="Data\Models\" />
-  </ItemGroup>
+<ApplicationId>com.companyname.FormsMauiMigration</ApplicationId>
+
+	  <!-- Required for C# Hot Reload -->
+	  <UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">15.4</SupportedOSPlatformVersion>
+	  <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">31.0</SupportedOSPlatformVersion>
+
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  
+
+    <ItemGroup>
+      <None Remove="Microsoft.AppCenter.Analytics" />
+      <None Remove="Microsoft.AppCenter" />
+      <None Remove="Microsoft.AppCenter.Crashes" />
+      <None Remove="FreshMvvm.Maui" />
+      <None Remove="sqlite-net-pcl" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0-preview.1" />
+      <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.0-preview.1" />
+      <PackageReference Include="Microsoft.AppCenter" Version="5.0.0-preview.1" />
+      <PackageReference Include="FreshMvvm.Maui" Version="0.0.4" />
+    </ItemGroup>
 </Project>

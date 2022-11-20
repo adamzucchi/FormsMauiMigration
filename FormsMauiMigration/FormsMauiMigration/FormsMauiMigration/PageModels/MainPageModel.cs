@@ -6,23 +6,24 @@ using System.Windows.Input;
 using FormsMauiMigration.Data;
 using FormsMauiMigration.Interfaces;
 using FormsMauiMigration.Models;
-using FreshMvvm;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using FreshMvvm.Maui;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.AppCenter.Crashes;
 
 namespace FormsMauiMigration.PageModels
 {
     public class MainPageModel : FreshBasePageModel
     {
         private ICloudService _cloudService;
-        private IDataService _dataService;
         private Monkey _selectedMonkey;
         private ObservableCollection<Monkey> _monkeys;
 
         #region Constructor
-        public MainPageModel(ICloudService cloudService, IDataService dataService)
+        public MainPageModel(ICloudService cloudService)
         {
             _cloudService = cloudService;
-            _dataService = dataService;
 
             SelectedMonkeyChangedCommand = new Command(async () => await SelectedMonkeyChanged());
         }
@@ -35,26 +36,10 @@ namespace FormsMauiMigration.PageModels
 
             Task.Run(async () =>
             {
-                IList<Monkey> monkeys = await _cloudService.GetMonkeys();
+                IList<Monkey> cloudMonkeys = await _cloudService.GetMonkeys();
 
-                foreach(Monkey cloudMonkey in monkeys)
-                {
-                    Data.Models.Monkey dbMonkey = new Data.Models.Monkey
-                    {
-                        Id = cloudMonkey.Id,
-                        Name = cloudMonkey.Name,
-                        Details = cloudMonkey.Details,
-                        Location = cloudMonkey.Location,
-                        ImageUrl = cloudMonkey.ImageUrl
-                    };
-
-                    await _dataService.MonkeyRepository.Save(dbMonkey);
-                }
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Monkeys = new ObservableCollection<Monkey>(monkeys);
-                });
+                Monkeys = new ObservableCollection<Monkey>(cloudMonkeys);
+                
             });
         }
         #endregion FreshMvvmLifecycleMethods
@@ -62,7 +47,7 @@ namespace FormsMauiMigration.PageModels
         #region Methods
         private async Task SelectedMonkeyChanged()
         {
-            if(_selectedMonkey != null)
+            if (_selectedMonkey != null)
             {
                 await CoreMethods.PushPageModel<DetailPageModel>(_selectedMonkey);
 

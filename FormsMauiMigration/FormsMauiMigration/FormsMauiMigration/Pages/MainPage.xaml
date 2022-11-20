@@ -1,14 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FormsMauiMigration.Pages.MainPage"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="True">
-    <AbsoluteLayout Padding="0"
-                    Margin="0">
-        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
-              AbsoluteLayout.LayoutFlags="All"
-              Padding="20,0"
+             x:Class="FormsMauiMigration.Pages.MainPage">
+    
+        <Grid Padding="20,0"
               Margin="0"
               RowDefinitions="Auto,*"
               ColumnDefinitions="*">
@@ -21,7 +16,6 @@
             <CollectionView Grid.Row="1"
                             Grid.Column="0"
                             Margin="0"
-                            ItemSizingStrategy="MeasureAllItems"
                             SelectionMode="Single"
                             SelectedItem="{Binding SelectedMonkey}"
                             SelectionChangedCommand="{Binding SelectedMonkeyChangedCommand}"
@@ -32,13 +26,16 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="0"
+                        <Border Padding="0"
                                Margin="0"
-                               HasShadow="False"
-                               BackgroundColor="DarkGray"
-                               CornerRadius="15">
+                               StrokeThickness="1"
+                               StrokeShape="RoundRectangle 20"
+                               InputTransparent="False"
+                               BackgroundColor="DarkGray">
                             <Grid Padding="0"
                                   Margin="0"
+                                  RowSpacing="0"
+                                  ColumnSpacing="15"
                                   RowDefinitions="15,100,15"
                                   ColumnDefinitions="20,100,*">
                                 <Image Grid.Row="1"
@@ -58,10 +55,10 @@
                                        LineBreakMode="TailTruncation"
                                        Text="{Binding Name}" />
                             </Grid>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-    </AbsoluteLayout>
+    
 </ContentPage>
